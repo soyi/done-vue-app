@@ -3,26 +3,34 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import './common/css/reset.css'
-import VueAwesomeSwiper from 'vue-awesome-swiper'
-import store from './store'
-Vue.use(VueAwesomeSwiper)
-Vue.config.productionTip = false
-import 'swiper/dist/css/swiper.css'
-import './common/css/iconfont.css'
 import VueLazyload from 'vue-lazyload'
-import * as filters from 'common/js/filter.js'
-Object.keys(filters).forEach(key=>{
-	 Vue.filter(key, filters[key])
+import './../static/font-icon/style.css'
+import store from '@/store'
+import Msg from 'vue-message'
+
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+Vue.use(Msg, {text: 'Hello world', duration: 3000, background: 'rgba(7,17,27,0.6)'})
+
+Vue.use(VueAwesomeSwiper)
+Vue.use(ElementUI)
+
+Vue.use(VueLazyload, {
+  loading: 'https://www.daiwei.site/web_v2/dw.png',
+  error: 'https://www.daiwei.site/web_v2/bg/657952152722629515.jpg'
 })
-Vue.use(VueLazyload,{
-	loading:require('common/images/loading.gif')
-})
+
+Vue.config.productionTip = false
+
 /* eslint-disable no-new */
-var vm=new Vue({
+const vueExp = new Vue({
   el: '#app',
   router,
   store,
-  components: { App },
-  template: '<App/>'
+  template: '<App/>',
+  render: h => h(App)
 })
+
+export default vueExp
